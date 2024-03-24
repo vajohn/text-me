@@ -1,12 +1,12 @@
 package lajabu.john.textme.services;
 
-import java.util.Objects;
 import java.util.Optional;
 import lajabu.john.textme.data.models.ChatRoom;
 import lajabu.john.textme.data.models.Message;
 import lajabu.john.textme.data.models.User;
 import lajabu.john.textme.data.repositories.MessageRepository;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
+import lajabu.john.textme.services.implementations.ChatRoomServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +22,7 @@ class MessageServiceTest {
   @Mock
   private UserService userService;
   @Mock
-  private ChatRoomService chatRoomService;
+  private ChatRoomServiceImpl chatRoomService;
 
   private MessageService messageService;
 

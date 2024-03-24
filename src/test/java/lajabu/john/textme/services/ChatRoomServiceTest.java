@@ -6,6 +6,7 @@ import lajabu.john.textme.data.models.User;
 import lajabu.john.textme.data.repositories.ChatRoomRepository;
 import lajabu.john.textme.exceptions.Status403NotAllowedException;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
+import lajabu.john.textme.services.implementations.ChatRoomServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ class ChatRoomServiceTest {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    chatRoomService = new ChatRoomService(chatRoomRepository);
+    chatRoomService = new ChatRoomServiceImpl(chatRoomRepository);
   }
 
   @Test

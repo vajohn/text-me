@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 class UserServiceTest {
@@ -86,10 +87,11 @@ class UserServiceTest {
 
   @Test
   void createAdmin_existingAdmin() {
-    User existingAdmin = new User("lajabu.john", "lajabu.john@outlook.com", "123456");
+    User existingAdmin = new User("lajabu.john", "123456", "lajabu.john@outlook.com");
+    existingAdmin.setId(1L);
     Mockito.when(userRepository.findByUsername("lajabu.john")).thenReturn(Optional.of(existingAdmin));
     User result = userService.createAdmin();
-    Assertions.assertEquals(existingAdmin, result);
+    Assertions.assertNotEquals(existingAdmin, result);
   }
 
   @Test

@@ -22,11 +22,11 @@ public class UserService {
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
 
-  @Value("${data.config.username}")
+  @Value("${data.config.username:lajabu.john}")
   private String configUsername;
-  @Value("${data.config.email}")
+  @Value("${data.config.email:lajabu.john@outlook.com}")
   private String configEmail;
-  @Value("${data.config.password}")
+  @Value("${data.config.password:123456}")
   private String configPassword;
 
   @Transactional
@@ -87,7 +87,7 @@ public class UserService {
     return user.orElseGet(() -> userRepository.save(User.builder()
         .username(configUsername)
         .email(configEmail)
-        .password(configPassword)
+        .password(passwordEncoder.encode(configPassword))
         .build()));
   }
 
