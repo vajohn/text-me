@@ -11,3 +11,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
+
+data:
+  config:
+    email: lajabu.john@outlook.com
+    username: lajabu.john
+    password: 123456
+  token:
+    signing:
+      key: 413F4428472B5454584d5f5de28r9w5d6452948404D6351
+    expiration: 10080 #7 days

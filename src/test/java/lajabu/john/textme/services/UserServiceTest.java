@@ -1,7 +1,7 @@
 package lajabu.john.textme.services;
 
 import java.util.Optional;
-import lajabu.john.textme.data.dto.UserDto;
+import lajabu.john.textme.data.dao.UserDto;
 import lajabu.john.textme.data.models.User;
 import lajabu.john.textme.data.repositories.UserRepository;
 import lajabu.john.textme.exceptions.Status404BadRequest;
@@ -12,17 +12,20 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 class UserServiceTest {
 
   @Mock
   private UserRepository userRepository;
-
+  @Mock
+  private PasswordEncoder passwordEncoder;
   private UserService userService;
 
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    userService = new UserService(userRepository);
+    userService = new UserService(userRepository, passwordEncoder);
   }
 
   @Test

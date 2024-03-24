@@ -1,4 +1,4 @@
-package lajabu.john.textme.data.dto;
+package lajabu.john.textme.data.dao;
 
 
 public class ChatRoomDto {

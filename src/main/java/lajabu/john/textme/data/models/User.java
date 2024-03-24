@@ -24,5 +24,6 @@ public class User extends AuditExtender implements Serializable {
   private String password;
   @Column
   private String email;
+  //todo add roles
 }
 

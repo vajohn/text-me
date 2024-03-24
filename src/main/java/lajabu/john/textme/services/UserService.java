@@ -1,13 +1,15 @@
 package lajabu.john.textme.services;
 
 import java.util.Optional;
-import lajabu.john.textme.data.dto.UserDto;
+import lajabu.john.textme.data.dao.UserDto;
 import lajabu.john.textme.data.models.User;
 import lajabu.john.textme.data.repositories.UserRepository;
 import lajabu.john.textme.exceptions.Status404BadRequest;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +18,16 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService {
 
+  public static final String USER_NOT_FOUND = "User not found";
   private final UserRepository userRepository;
+  private final PasswordEncoder passwordEncoder;
+
+  @Value("${data.config.username}")
+  private String configUsername;
+  @Value("${data.config.email}")
+  private String configEmail;
+  @Value("${data.config.password}")
+  private String configPassword;
 
   @Transactional
   public User saveUser(UserDto user) {
@@ -30,14 +41,14 @@ public class UserService {
     return userRepository.save(User.builder()
         .username(user.getUsername())
         .email(user.getEmail())
-        .password(user.getPassword())
+        .password(passwordEncoder.encode(user.getPassword()))
         .build());
   }
 
   @Transactional(readOnly = true)
   public User getUserById(Long id) {
     return userRepository.findById(id)
-        .orElseThrow(() -> new Status404NotFoundException("User not found"));
+        .orElseThrow(() -> new Status404NotFoundException(USER_NOT_FOUND));
   }
 
   @Transactional(readOnly = true)
@@ -65,19 +76,25 @@ public class UserService {
   @Transactional
   public User findUserEmailUpdate(UserDto dto) {
     User user = userRepository.findById(dto.getId())
-        .orElseThrow(() -> new Status404NotFoundException("User not found"));
+        .orElseThrow(() -> new Status404NotFoundException(USER_NOT_FOUND));
     user.setEmail(dto.getEmail());
     return userRepository.save(user);
   }
 
   @Transactional
   public User createAdmin() {
-    //todo change this to be created from yml file
-    Optional<User> user = userRepository.findByUsername("lajabu.john");
+    Optional<User> user = userRepository.findByUsername(configUsername);
     return user.orElseGet(() -> userRepository.save(User.builder()
-        .username("lajabu.john")
-        .email("lajabu.john@outlook.com")
-        .password("123456")
+        .username(configUsername)
+        .email(configEmail)
+        .password(configPassword)
         .build()));
+  }
+
+  @Transactional(readOnly = true)
+  public User findByEmailOrUsername(UserDto request) {
+    Optional<User> user = userRepository.findByEmail(request.getEmail());
+    return user.orElseGet(() -> userRepository.findByUsername(request.getUsername())
+        .orElseThrow(() -> new Status404NotFoundException(USER_NOT_FOUND)));
   }
 }
