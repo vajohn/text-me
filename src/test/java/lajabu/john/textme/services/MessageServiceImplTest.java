@@ -7,6 +7,7 @@ import lajabu.john.textme.data.models.User;
 import lajabu.john.textme.data.repositories.MessageRepository;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
 import lajabu.john.textme.services.implementations.ChatRoomServiceImpl;
+import lajabu.john.textme.services.implementations.MessageServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import java.util.List;
 
-class MessageServiceTest {
+class MessageServiceImplTest {
 
   @Mock
   private MessageRepository messageRepository;
@@ -24,7 +25,7 @@ class MessageServiceTest {
   @Mock
   private ChatRoomServiceImpl chatRoomService;
 
-  private MessageService messageService;
+  private MessageServiceImpl messageServiceImpl;
 
   private User user;
   private ChatRoom chatRoom;
@@ -33,7 +34,7 @@ class MessageServiceTest {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    messageService = new MessageService(messageRepository, userService, chatRoomService);
+    messageServiceImpl = new MessageServiceImpl(messageRepository, userService, chatRoomService);
     user = User.builder()
         .email("old@email.com")
         .username("oldUser")
@@ -62,7 +63,7 @@ class MessageServiceTest {
         .build();
     savedMessage.setId(1L);
     Mockito.when(messageRepository.save(Mockito.any(Message.class))).thenReturn(savedMessage);
-    Message result = messageService.save(message);
+    Message result = messageServiceImpl.save(message);
     Assertions.assertEquals(savedMessage, result);
   }
 
@@ -71,21 +72,21 @@ class MessageServiceTest {
     Mockito.when(chatRoomService.getChatRoomById(1L)).thenReturn(chatRoom);
     List<Message> messages = List.of(savedMessage);
     Mockito.when(messageRepository.findAllByChatRoomIdAndVisible(1L, true)).thenReturn(messages);
-    List<Message> result = messageService.findAllByRoomAndVisibility(1L, true);
+    List<Message> result = messageServiceImpl.findAllByRoomAndVisibility(1L, true);
     Assertions.assertEquals(messages, result);
   }
 
   @Test
   void getMessageById_success() {
     Mockito.when(messageRepository.findById(1L)).thenReturn(Optional.of(savedMessage));
-    Message result = messageService.getMessageById(1L);
+    Message result = messageServiceImpl.getMessageById(1L);
     Assertions.assertEquals(savedMessage, result);
   }
 
   @Test
   void getMessageById_notFound() {
     Assertions.assertThrows(Status404NotFoundException.class,
-        () -> messageService.getMessageById(1L));
+        () -> messageServiceImpl.getMessageById(1L));
   }
 
   @Test
@@ -98,7 +99,7 @@ class MessageServiceTest {
     updatedMessage.setId(1L);
     Mockito.when(messageRepository.findById(1L)).thenReturn(Optional.of(savedMessage));
     Mockito.when(messageRepository.save(Mockito.any(Message.class))).thenReturn(updatedMessage);
-    Message result = messageService.updateMessage(updatedMessage);
+    Message result = messageServiceImpl.updateMessage(updatedMessage);
     Assertions.assertEquals(updatedMessage, result);
   }
 
@@ -111,14 +112,14 @@ class MessageServiceTest {
         .build();
     updatedMessage.setId(1L);
     Assertions.assertThrows(Status404NotFoundException.class,
-        () -> messageService.updateMessage(updatedMessage));
+        () -> messageServiceImpl.updateMessage(updatedMessage));
   }
 
   @Test
   void deleteMessage_senderOwner() {
     Mockito.when(messageRepository.findById(1L)).thenReturn(Optional.of(savedMessage));
     Mockito.when(userService.getUserById(1L)).thenReturn(user);
-    messageService.deleteMessage(1L, user.getId());
+    messageServiceImpl.deleteMessage(1L, user.getId());
     Mockito.verify(messageRepository).deleteById(1L);
   }
 
@@ -132,7 +133,7 @@ class MessageServiceTest {
     deleter.setId(2L);
     Mockito.when(messageRepository.findById(1L)).thenReturn(Optional.of(savedMessage));
     Mockito.when(userService.getUserById(2L)).thenReturn(deleter);
-    messageService.deleteMessage(1L, 2L);
+    messageServiceImpl.deleteMessage(1L, 2L);
     Mockito.verify(messageRepository, Mockito.times(0)).deleteById(1L);
     Mockito.verify(messageRepository, Mockito.times(1)).save(Mockito.any(Message.class));
   }
