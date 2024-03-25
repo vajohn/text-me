@@ -6,27 +6,24 @@ import lajabu.john.textme.data.models.User;
 import lajabu.john.textme.data.repositories.UserRepository;
 import lajabu.john.textme.exceptions.Status404BadRequest;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
+import lajabu.john.textme.services.implementations.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 class UserServiceTest {
 
   @Mock
   private UserRepository userRepository;
-  @Mock
-  private PasswordEncoder passwordEncoder;
   private UserService userService;
 
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    userService = new UserService(userRepository, passwordEncoder);
+    userService = new UserServiceImpl(userRepository);
   }
 
   @Test
@@ -85,22 +82,6 @@ class UserServiceTest {
     Assertions.assertThrows(Status404NotFoundException.class, () -> userService.getUserById(1L));
   }
 
-  @Test
-  void createAdmin_existingAdmin() {
-    User existingAdmin = new User("lajabu.john", "123456", "lajabu.john@outlook.com");
-    existingAdmin.setId(1L);
-    Mockito.when(userRepository.findByUsername("lajabu.john")).thenReturn(Optional.of(existingAdmin));
-    User result = userService.createAdmin();
-    Assertions.assertNotEquals(existingAdmin, result);
-  }
 
-  @Test
-  void createAdmin_newAdmin() {
-    Mockito.when(userRepository.findByUsername("lajabu.john")).thenReturn(Optional.empty());
-    User expectedAdmin = new User("lajabu.john", "lajabu.john@outlook.com", "123456");
-    Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(expectedAdmin);
-    User result = userService.createAdmin();
-    Assertions.assertEquals(expectedAdmin, result);
-  }
 }
 

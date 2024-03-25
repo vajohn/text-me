@@ -1,19 +1,19 @@
 package lajabu.john.textme.config;
 
 import java.util.Collections;
-import lajabu.john.textme.services.CustomUserDetailsService;
+import lajabu.john.textme.services.UserService;
 import lajabu.john.textme.utilities.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +29,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig  {
-  private final CustomUserDetailsService customUserDetailsService;
+  private final UserService userService;
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -38,9 +38,14 @@ public class WebSecurityConfig  {
   @Bean
   public AuthenticationProvider authenticationProvider() {
     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    authProvider.setUserDetailsService(customUserDetailsService);
+    authProvider.setUserDetailsService(userService.userDetailsService());
     authProvider.setPasswordEncoder(passwordEncoder());
     return authProvider;
+  }
+
+  @Bean
+  public WebSecurityCustomizer webSecurityCustomizer() {
+    return web -> web.ignoring().requestMatchers("/**");
   }
 
   @Bean
@@ -57,7 +62,7 @@ public class WebSecurityConfig  {
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authenticationProvider(authenticationProvider()).addFilterBefore(
             jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-        .authorizeHttpRequests(a -> a.requestMatchers("/api/v1/auth/**")
+        .authorizeHttpRequests(a -> a.requestMatchers("/api/v1/auth/**", "/chat/**")
             .permitAll().anyRequest().authenticated());
     return http.build();
   }

@@ -3,6 +3,7 @@ package lajabu.john.textme.controllers;
 import java.util.List;
 import lajabu.john.textme.data.dao.MessageDto;
 import lajabu.john.textme.data.models.Message;
+import lajabu.john.textme.data.projections.MessageProjection;
 import lajabu.john.textme.services.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class MessageController {
   private final MessageService messageService;
 
   @PostMapping
-  public ResponseEntity<Message> createMessage(MessageDto messageDto) {
+  public ResponseEntity<MessageDto> createMessage(MessageDto messageDto) {
     return ResponseEntity.ok(messageService.saveLite(messageDto));
   }
 
@@ -47,7 +48,7 @@ public class MessageController {
   }
 
   @GetMapping("/{roomId}/{visible}")
-  public ResponseEntity<List<Message>> getMessages(@PathVariable Long roomId,@PathVariable boolean visible) {
+  public ResponseEntity<List<MessageProjection>> getMessages(@PathVariable Long roomId,@PathVariable boolean visible) {
     return ResponseEntity.ok(messageService.findAllByRoomAndVisibility(roomId, visible));
   }
 }

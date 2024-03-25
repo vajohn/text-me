@@ -5,6 +5,7 @@ import lajabu.john.textme.data.dao.MessageDto;
 import lajabu.john.textme.data.models.ChatRoom;
 import lajabu.john.textme.data.models.Message;
 import lajabu.john.textme.data.models.User;
+import lajabu.john.textme.data.projections.MessageProjection;
 import lajabu.john.textme.data.repositories.MessageRepository;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
 import lajabu.john.textme.services.ChatRoomService;
@@ -32,19 +33,28 @@ public class MessageServiceImpl implements MessageService {
   }
 
   @Override
-  public Message saveLite(MessageDto messageDto) {
+  @Transactional()
+  public MessageDto saveLite(MessageDto messageDto) {
     ChatRoom chatRoom = chatRoomService.getChatRoomById(messageDto.getChatRoomId());
     User senderUser = userService.getUserById(messageDto.getSenderId());
     Message message = Message.builder()
         .content(messageDto.getContent())
         .chatRoom(chatRoom)
+        .visible(true)
+        .sender(senderUser.getUsername())
         .senderUser(senderUser)
         .build();
-    return messageRepository.save(message);
+    message = messageRepository.save(message);
+    return MessageDto.builder()
+        .content(message.getContent())
+        .sender(message.getSenderUser().getUsername())
+        .chatRoomId(message.getChatRoom().getId())
+        .senderId(message.getSenderUser().getId())
+        .build();
   }
   @Override
   @Transactional(readOnly = true)
-  public List<Message> findAllByRoomAndVisibility(Long roomId, boolean visible) {
+  public List<MessageProjection> findAllByRoomAndVisibility(Long roomId, boolean visible) {
     ChatRoom chatRoom = chatRoomService.getChatRoomById(roomId);
     return messageRepository.findAllByChatRoomIdAndVisible(chatRoom.getId(), visible);
   }

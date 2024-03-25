@@ -3,12 +3,13 @@ package lajabu.john.textme.services;
 import java.util.List;
 import lajabu.john.textme.data.dao.MessageDto;
 import lajabu.john.textme.data.models.Message;
+import lajabu.john.textme.data.projections.MessageProjection;
 
 public interface MessageService {
 
   Message save(Message message);
 
-  List<Message> findAllByRoomAndVisibility(Long roomId, boolean visible);
+  List<MessageProjection> findAllByRoomAndVisibility(Long roomId, boolean visible);
 
   Message getMessageById(Long id);
 
@@ -16,5 +17,5 @@ public interface MessageService {
 
   void deleteMessage(Long id, Long userId);
 
-  Message saveLite(MessageDto messageDto);
+  MessageDto saveLite(MessageDto messageDto);
 }

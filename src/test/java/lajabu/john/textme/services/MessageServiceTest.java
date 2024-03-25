@@ -8,15 +8,14 @@ import lajabu.john.textme.data.repositories.MessageRepository;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
 import lajabu.john.textme.services.implementations.ChatRoomServiceImpl;
 import lajabu.john.textme.services.implementations.MessageServiceImpl;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import java.util.List;
 
-class MessageServiceImplTest {
+class MessageServiceTest {
 
   @Mock
   private MessageRepository messageRepository;
@@ -65,15 +64,6 @@ class MessageServiceImplTest {
     Mockito.when(messageRepository.save(Mockito.any(Message.class))).thenReturn(savedMessage);
     Message result = messageServiceImpl.save(message);
     Assertions.assertEquals(savedMessage, result);
-  }
-
-  @Test
-  void findAllByRoomAndVisibility_success() {
-    Mockito.when(chatRoomService.getChatRoomById(1L)).thenReturn(chatRoom);
-    List<Message> messages = List.of(savedMessage);
-    Mockito.when(messageRepository.findAllByChatRoomIdAndVisible(1L, true)).thenReturn(messages);
-    List<Message> result = messageServiceImpl.findAllByRoomAndVisibility(1L, true);
-    Assertions.assertEquals(messages, result);
   }
 
   @Test

@@ -8,6 +8,7 @@ import lajabu.john.textme.data.repositories.ChatRoomRepository;
 import lajabu.john.textme.exceptions.Status403NotAllowedException;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
 import lajabu.john.textme.services.ChatRoomService;
+import lajabu.john.textme.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 
   public static final String CHAT_ROOM_NOT_FOUND = "Chat room not found";
   private final ChatRoomRepository chatRoomRepository;
-
+  private final UserService userService;
   @Transactional
   public ChatRoom saveChatRoom(ChatRoom chatRoom) {
     return chatRoomRepository.save(chatRoom);
@@ -67,7 +68,7 @@ public class ChatRoomServiceImpl implements ChatRoomService {
     ChatRoom chatRoom = ChatRoom.builder()
         .name("General")
         .description("General chat room")
-        .createdBy(user)
+        .createdBy(userService.getUserById(user.getId()))
         .build();
     chatRoomRepository.save(chatRoom);
   }

@@ -7,6 +7,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChatRoom extends AuditExtender implements Serializable {
+  @Serial
+  private static final long serialVersionUID = 1693855717L;
   @Column
   private String name;
   @Column

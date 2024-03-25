@@ -15,9 +15,10 @@ public class MessageDto {
   private String content;
   private boolean visible;
   private long senderId;
+  private String sender;
   private long modifiedById;
   private long chatRoomId;
-  private UserDto sender;
+  private UserDto senderDto;
   private UserDto modifiedBy;
   private ChatRoomDto chatRoom;
 }

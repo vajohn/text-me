@@ -6,6 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,9 +22,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message extends AuditExtender implements Serializable {
+  @Serial
+  private static final long serialVersionUID = 1116927318969192L;
+  @Column
   private String content;
-  @Column(name = "visible", nullable = false, columnDefinition = "boolean default true")
-  private boolean visible = true;
+  @Column
+  private boolean visible;
+  @Column
+  private String sender;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "sender_user_id")
   private User senderUser;
