@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import lajabu.john.textme.data.dao.UserDto;
 import lajabu.john.textme.data.models.User;
+import lajabu.john.textme.data.projections.UserProjection;
 import lajabu.john.textme.data.repositories.UserRepository;
 import lajabu.john.textme.exceptions.Status404BadRequest;
 import lajabu.john.textme.exceptions.Status404NotFoundException;
@@ -45,8 +46,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Transactional(readOnly = true)
-  public List<User> getAllUsers() {
-    return userRepository.findAll();
+  public List<UserProjection> getAllUsers() {
+    return userRepository.findAllBy();
   }
 
   @Transactional(readOnly = true)

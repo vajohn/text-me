@@ -3,6 +3,7 @@ package lajabu.john.textme.controllers;
 import java.util.List;
 import lajabu.john.textme.data.dao.UserDto;
 import lajabu.john.textme.data.models.User;
+import lajabu.john.textme.data.projections.UserProjection;
 import lajabu.john.textme.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class UserController {
   private final UserService userService;
 
   @GetMapping
-  public ResponseEntity<List<User>> getAllUsers() {
+  public ResponseEntity<List<UserProjection>> getAllUsers() {
     return ResponseEntity.ok(userService.getAllUsers());
   }
 

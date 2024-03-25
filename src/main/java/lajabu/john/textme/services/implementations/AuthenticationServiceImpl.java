@@ -53,7 +53,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
   @Override
   public String login(UserDto request) {
     authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
     Optional<User> userSearch = userRepository.findByEmail(request.getEmail());
     User user = userSearch.orElseGet(() -> userRepository.findByUsername(request.getUsername())
         .orElseThrow(() -> new Status404NotFoundException("User not found")));

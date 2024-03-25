@@ -1,5 +1,7 @@
 package lajabu.john.textme.data.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +12,7 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Transient;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import lajabu.john.textme.utilities.LocalDateTimeSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,11 +29,13 @@ public class AuditExtender {
   private Long modifiedAt;
 
   @Transient
+  @JsonSerialize(using = LocalDateTimeSerializer.class)
   public LocalDateTime getDateCreated() {
     return LocalDateTime.ofEpochSecond(createdAt, 0, ZoneOffset.UTC);
   }
 
   @Transient
+  @JsonSerialize(using = LocalDateTimeSerializer.class)
   public LocalDateTime getDateModified() {
     return LocalDateTime.ofEpochSecond(modifiedAt, 0, ZoneOffset.UTC);
   }
