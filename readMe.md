@@ -45,7 +45,7 @@
 - MySQL with a database/schema named `text_me`
 - Postman or any other API testing tool
 
-**ℹ️ Info:** Please check the applications resources/textMe.postman_collection.json file for the API collection.
+**ℹ️ Info:** Please check the applications resources/textMe.postman_collection.json file for the API collection. You can find the websocket collection [here](https://interstellar-water-8096.postman.co/workspace/Team-Workspace~7ecf4a18-6c10-4dd5-820b-f5a8b82ff95b/collection/6602bfc4576521afcb09370d?action=share&creator=2396352)
 
 ## Using the Application
 ### Authentication
@@ -59,6 +59,12 @@
 - With a chat room created, you can now send messages. Make a POST request to [create message](#create-message). Provide the message content, sender ID, chat room ID, and other required details in the request body.
 - To view all messages in a chat room, make a GET request to [get messages by room and visibility](#get-messages-by-room-and-visibility). Provide the chat room ID and visibility status in the URL.
 - To delete a message, make a DELETE request to [delete message](#delete-message). Provide the message ID and the user ID of the message sender in the URL. If the user ID provided is not the same as the message sender ID, the message will not be deleted but its visibility will be set to false.
+
+### Websocket Chat
+- To use the websocket chat, you can use the [websocket collection](https://interstellar-water-8096.postman.co/workspace/Team-Workspace~7ecf4a18-6c10-4dd5-820b-f5a8b82ff95b/collection/6602bfc4576521afcb09370d?action=share&creator=2396352) in Postman. The collection contains requests to connect to the websocket server, send messages, and receive messages in real-time.
+- Note that you will have to use the rest APIs to authenticate and everything else except for messaging.
+
+**⚠️ Warning:** You can use the rest APIs to send, retrieve and delete messages, the web-sockets just make the experience better.
 
 ## API Documentation
 
