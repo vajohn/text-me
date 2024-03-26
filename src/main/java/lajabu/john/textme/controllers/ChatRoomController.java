@@ -1,6 +1,7 @@
 package lajabu.john.textme.controllers;
 
 import java.util.List;
+import lajabu.john.textme.data.dao.ChatRoomDto;
 import lajabu.john.textme.data.models.ChatRoom;
 import lajabu.john.textme.services.ChatRoomService;
 import lombok.RequiredArgsConstructor;
@@ -22,23 +23,29 @@ public class ChatRoomController {
   private final ChatRoomService chatRoomService;
 
   @PostMapping
-  public ResponseEntity<ChatRoom> createDefaultChatRoom(@RequestBody ChatRoom chatRoom) {
+  public ResponseEntity<ChatRoom> createChatRoom(@RequestBody ChatRoom chatRoom) {
     return ResponseEntity.ok(chatRoomService.saveChatRoom(chatRoom));
   }
 
   @GetMapping
-  public ResponseEntity<List<ChatRoom>> getAllChatRooms() {
-    return ResponseEntity.ok(chatRoomService.getAllChatRooms());
+  public ResponseEntity<List<ChatRoomDto>> getAllChatRooms() {
+    List<ChatRoom> chatRooms = chatRoomService.getAllVisibleChatRooms();
+    List<ChatRoomDto> chatRoomDTOs = chatRooms.stream()
+        .map(ChatRoom::toDTO)
+        .toList();
+    return ResponseEntity.ok(chatRoomDTOs);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<ChatRoom> getChatRoom(@PathVariable Long id) {
-    return ResponseEntity.ok(chatRoomService.getChatRoomById(id));
+  public ResponseEntity<ChatRoomDto> getChatRoom(@PathVariable Long id) {
+    ChatRoom chatRoom = chatRoomService.getChatRoomById(id);
+    return ResponseEntity.ok(chatRoom.toDTO());
   }
 
   @PutMapping
-  public ResponseEntity<ChatRoom> updateChatRoom(@RequestBody ChatRoom chatRoom) {
-    return ResponseEntity.ok(chatRoomService.updateChatRoom(chatRoom));
+  public ResponseEntity<ChatRoomDto> updateChatRoom(@RequestBody ChatRoom chatRoom) {
+    ChatRoom chatRoom1 = chatRoomService.updateChatRoom(chatRoom);
+    return ResponseEntity.ok(chatRoom1.toDTO());
   }
 
   @DeleteMapping("/{id}/{userId}")

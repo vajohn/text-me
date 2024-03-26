@@ -23,4 +23,5 @@ public class TextMeApplication {
     User user = authenticationService.createAdmin();
     chatRoomService.createDefaultChatRoom(user);
   }
+  // TODO: 2024/03/26 add better exception handling for all controllers
 }

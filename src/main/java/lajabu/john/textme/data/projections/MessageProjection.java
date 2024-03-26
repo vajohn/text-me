@@ -5,6 +5,7 @@ public interface MessageProjection {
   String getSender();
   SenderUserProjection getSenderUser();
   interface SenderUserProjection {
+    Long getId();
     String getUsername();
   }
 }

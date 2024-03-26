@@ -1,0 +1,1560 @@
+{
+	"info": {
+		"_postman_id": "f66aade4-3dab-4568-8edd-f61028017412",
+		"name": "textMe",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2396352"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/user",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/user",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:49:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"lajabu.john\",\n        \"email\": \"lajabu.john@outlook.com\"\n    },\n    {\n        \"id\": 2,\n        \"username\": \"lajabu.john2\",\n        \"email\": \"lajabu.john2@outlook.com\"\n    },\n    {\n        \"id\": 3,\n        \"username\": \"john_doe\",\n        \"email\": \"john@example.com\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get User By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/user/:userId",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/user/:userId",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:50:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"createdAt\": 1711278547,\n    \"modifiedAt\": 1711278547,\n    \"username\": \"lajabu.john\",\n    \"email\": \"lajabu.john@outlook.com\",\n    \"dateCreated\": \"Sunday 24 March 2024 11:09:07\",\n    \"dateModified\": \"Sunday 24 March 2024 11:09:07\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User By Username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/user/username/:username",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"username",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "john_doe"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/user/username/:username",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"username",
+										":username"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "john_doe"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:51:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"createdAt\": 1711412702,\n    \"modifiedAt\": 1711412702,\n    \"username\": \"john_doe\",\n    \"email\": \"john@example.com\",\n    \"dateCreated\": \"Tuesday 26 March 2024 00:25:02\",\n    \"dateModified\": \"Tuesday 26 March 2024 00:25:02\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User By Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/user/email/:email",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"email",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "john@example.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/user/email/:email",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"email",
+										":email"
+									],
+									"variable": [
+										{
+											"key": "email",
+											"value": "john@example.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Disposition",
+									"value": "inline;filename=f.txt"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:51:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"createdAt\": 1711412702,\n    \"modifiedAt\": 1711412702,\n    \"username\": \"john_doe\",\n    \"email\": \"john@example.com\",\n    \"dateCreated\": \"Tuesday 26 March 2024 00:25:02\",\n    \"dateModified\": \"Tuesday 26 March 2024 00:25:02\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Check if Username Exists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/user/exists/username/:username",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"exists",
+								"username",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "lajabu.john"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check if Email Exists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/user/exists/email/:email",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"exists",
+								"email",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "lajabu.john@outlook.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"email\": \"lajabu.john@outlook.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/user/update/email",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"update",
+								"email"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"email\": \"lajabu.john@outlook.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gateway}}/api/v1/user/update/email",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"update",
+										"email"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:52:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"createdAt\": 1711278547,\n    \"modifiedAt\": 1711461176,\n    \"username\": \"lajabu.john\",\n    \"email\": \"lajabu.john@outlook.com\",\n    \"dateCreated\": \"Sunday 24 March 2024 11:09:07\",\n    \"dateModified\": \"Tuesday 26 March 2024 13:52:56\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "Create Message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Message Sent\"] = (jsonData !== null && jsonData.id !== null);",
+									"",
+									"postman.setEnvironmentVariable(\"message-id\", jsonData.id);",
+									"postman.setEnvironmentVariable(\"sender-id\", jsonData.senderId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Hello World\",\n    \"visible\": true,\n    \"senderId\": 1,\n    \"sender\": \"John Doe\",\n    \"modifiedById\": 1,\n    \"chatRoomId\": {{chat-room-id}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/message",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"message"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": \"Hello World\",\n    \"visible\": true,\n    \"senderId\": 1,\n    \"sender\": \"John Doe\",\n    \"modifiedById\": 1,\n    \"chatRoomId\": {{chat-room-id}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gateway}}/api/v1/message",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"message"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 10:39:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"Hello World\",\n    \"visible\": false,\n    \"senderId\": 1,\n    \"sender\": \"lajabu.john\",\n    \"modifiedById\": 0,\n    \"chatRoomId\": 203,\n    \"senderDto\": null,\n    \"modifiedBy\": null,\n    \"chatRoom\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Save Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Hello World\",\n    \"visible\": true,\n    \"senderId\": 1,\n    \"chatRoomId\": 152\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/message/save",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"message",
+								"save"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": \"Hello World\",\n    \"visible\": true,\n    \"senderId\": 1,\n    \"chatRoomId\": 152\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gateway}}/api/v1/message/save",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"message",
+										"save"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:43:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"Hello World\",\n    \"visible\": true,\n    \"senderId\": 1,\n    \"sender\": \"lajabu.john\",\n    \"modifiedById\": 0,\n    \"chatRoomId\": 152,\n    \"senderDto\": {\n        \"id\": 1,\n        \"username\": \"lajabu.john\",\n        \"email\": \"lajabu.john@outlook.com\"\n    },\n    \"modifiedBy\": null,\n    \"chatRoom\": {\n        \"id\": 152,\n        \"name\": \"Updated Room Name\",\n        \"description\": \"Updated Room Description\",\n        \"createdByUserId\": null,\n        \"modifiedByUserId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Message",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 703,\n    \"content\": \"Updated Messaging\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/message",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"message"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 703,\n    \"content\": \"Updated Messaging\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gateway}}/api/v1/message",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"message"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:40:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"Updated Messaging\",\n    \"visible\": true,\n    \"senderId\": 1,\n    \"sender\": \"lajabu.john\",\n    \"modifiedById\": 0,\n    \"chatRoomId\": 152,\n    \"senderDto\": {\n        \"id\": 1,\n        \"username\": \"lajabu.john\",\n        \"email\": \"lajabu.john@outlook.com\"\n    },\n    \"modifiedBy\": null,\n    \"chatRoom\": {\n        \"id\": 152,\n        \"name\": \"Updated Room Name\",\n        \"description\": \"Updated Room Description\",\n        \"createdByUserId\": null,\n        \"modifiedByUserId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/message/:messageId/:senderId",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"message",
+								":messageId",
+								":senderId"
+							],
+							"variable": [
+								{
+									"key": "messageId",
+									"value": "702"
+								},
+								{
+									"key": "senderId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Message By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/message/:messageId",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"message",
+								":messageId"
+							],
+							"variable": [
+								{
+									"key": "messageId",
+									"value": "952"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/message/:messageId",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"message",
+										":messageId"
+									],
+									"variable": [
+										{
+											"key": "messageId",
+											"value": "952"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:45:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"Hello World\",\n    \"visible\": true,\n    \"senderId\": 1,\n    \"sender\": \"lajabu.john\",\n    \"modifiedById\": 0,\n    \"chatRoomId\": 152,\n    \"senderDto\": {\n        \"id\": 1,\n        \"username\": \"lajabu.john\",\n        \"email\": \"lajabu.john@outlook.com\"\n    },\n    \"modifiedBy\": null,\n    \"chatRoom\": {\n        \"id\": 152,\n        \"name\": \"Updated Room Name\",\n        \"description\": \"Updated Room Description\",\n        \"createdByUserId\": null,\n        \"modifiedByUserId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Messages By Room ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/message/:chatRoomId/:visible",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"message",
+								":chatRoomId",
+								":visible"
+							],
+							"variable": [
+								{
+									"key": "chatRoomId",
+									"value": "152"
+								},
+								{
+									"key": "visible",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/message/:chatRoomId/:visible",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"message",
+										":chatRoomId",
+										":visible"
+									],
+									"variable": [
+										{
+											"key": "chatRoomId",
+											"value": "152"
+										},
+										{
+											"key": "visible",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:48:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"content\": \"Updated Messaging\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    },\n    {\n        \"content\": \"hungey\",\n        \"senderUser\": {\n            \"id\": 2,\n            \"username\": \"lajabu.john2\"\n        },\n        \"sender\": \"lajabu.john2\"\n    },\n    {\n        \"content\": \"you meant hugry\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    },\n    {\n        \"content\": \"hi\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    },\n    {\n        \"content\": \"bhi\",\n        \"senderUser\": {\n            \"id\": 2,\n            \"username\": \"lajabu.john2\"\n        },\n        \"sender\": \"lajabu.john2\"\n    },\n    {\n        \"content\": \"we\",\n        \"senderUser\": {\n            \"id\": 2,\n            \"username\": \"lajabu.john2\"\n        },\n        \"sender\": \"lajabu.john2\"\n    },\n    {\n        \"content\": \"Hello World\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    },\n    {\n        \"content\": \"Hello World\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    },\n    {\n        \"content\": \"Hello World\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    },\n    {\n        \"content\": \"Hello World\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    },\n    {\n        \"content\": \"Hello World\",\n        \"senderUser\": {\n            \"id\": 1,\n            \"username\": \"lajabu.john\"\n        },\n        \"sender\": \"lajabu.john\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ChatRoom",
+			"item": [
+				{
+					"name": "Create Chat Room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Chat Room ID Received\"] = (jsonData !== null && jsonData.id !== null);",
+									"",
+									"postman.setEnvironmentVariable(\"chat-room-id\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New General Chat\",\n    \"description\": \"General discussion room\",\n    \"createdBy\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/chat-room",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat-room"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"General Chat\",\n    \"description\": \"General discussion room\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gateway}}/api/v1/chat-room",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat-room"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 10:14:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 202,\n    \"createdAt\": 1711455256,\n    \"modifiedAt\": 1711455256,\n    \"name\": \"General Chat\",\n    \"description\": \"General discussion room\",\n    \"createdBy\": null,\n    \"modifiedBy\": null,\n    \"dateCreated\": \"Tuesday 26 March 2024 12:14:16\",\n    \"dateModified\": \"Tuesday 26 March 2024 12:14:16\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Chat Rooms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Request Success\"] = (jsonData !== null);",
+									"tests[\"Rooms Found\"] = jsonData.length > 0;",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/chat-room",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat-room"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/chat-room",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat-room"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 10:42:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 152,\n        \"name\": \"General\",\n        \"description\": \"General chat room\",\n        \"createdByUserId\": 1,\n        \"modifiedByUserId\": null\n    },\n    {\n        \"id\": 202,\n        \"name\": \"General Chat\",\n        \"description\": \"General discussion room\",\n        \"createdByUserId\": null,\n        \"modifiedByUserId\": null\n    },\n    {\n        \"id\": 203,\n        \"name\": \"New General Chat\",\n        \"description\": \"General discussion room\",\n        \"createdByUserId\": null,\n        \"modifiedByUserId\": null\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Chat Room By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Chat Room ID Received\"] = (jsonData !== null && jsonData.id !== null);",
+									"",
+									"postman.setEnvironmentVariable(\"chat-room-id\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/chat-room/:chat-room-id",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat-room",
+								":chat-room-id"
+							],
+							"variable": [
+								{
+									"key": "chat-room-id",
+									"value": "203"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/chat-room/:chat-room-id",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat-room",
+										":chat-room-id"
+									],
+									"variable": [
+										{
+											"key": "chat-room-id",
+											"value": "203"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 10:43:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 203,\n    \"name\": \"New General Chat\",\n    \"description\": \"General discussion room\",\n    \"createdByUserId\": null,\n    \"modifiedByUserId\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Chat Room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Chat Room Updated\"] = (jsonData !== null && jsonData.id !== null);",
+									"",
+									"postman.setEnvironmentVariable(\"chat-room-id\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 152,\n    \"name\": \"Updated Room Name\",\n    \"description\": \"Updated Room Description\",\n    \"modifiedBy\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/chat-room",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat-room"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 152,\n    \"name\": \"Updated Room Name\",\n    \"description\": \"Updated Room Description\",\n    \"modifiedBy\": {\n        \"id\": 1\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gateway}}/api/v1/chat-room",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat-room"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 11:02:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 152,\n    \"name\": \"Updated Room Name\",\n    \"description\": \"Updated Room Description\",\n    \"createdByUserId\": null,\n    \"modifiedByUserId\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Chat Room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Chat Room ID Received\"] = (jsonData !== null && jsonData.id !== null);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/api/v1/chat-room/{{chat-room-id}}/:sender-id",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat-room",
+								"{{chat-room-id}}",
+								":sender-id"
+							],
+							"variable": [
+								{
+									"key": "sender-id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "error not owner",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{gateway}}/api/v1/chat-room/{{chat-room-id}}/:sender-id",
+									"host": [
+										"{{gateway}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat-room",
+										"{{chat-room-id}}",
+										":sender-id"
+									],
+									"variable": [
+										{
+											"key": "sender-id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Mar 2024 10:52:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "You are not the owner of this chat room"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "User Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Token reveived\"] = (responseBody !== null && responseBody !== \"\");",
+									"",
+									"postman.setEnvironmentVariable(\"user-access-token\", responseBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"john_doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/auth/signup",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Token reveived\"] = (responseBody !== null && responseBody !== \"\");",
+									"",
+									"postman.setEnvironmentVariable(\"user-access-token\", responseBody);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"lajabu.john@outlook.com\",\n    \"username\": \"lajabu.john\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/api/v1/auth/login",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{user-access-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

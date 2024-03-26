@@ -7,7 +7,7 @@ import lajabu.john.textme.data.projections.MessageProjection;
 
 public interface MessageService {
 
-  Message save(Message message);
+  Message save(MessageDto message);
 
   List<MessageProjection> findAllByRoomAndVisibility(Long roomId, boolean visible);
 

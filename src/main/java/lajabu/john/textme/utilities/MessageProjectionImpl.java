@@ -36,7 +36,14 @@ public class MessageProjectionImpl implements MessageProjection {
   @NoArgsConstructor
   @Builder
   public static class SenderUserProjectionImpl implements SenderUserProjection {
+    private Long id;
     private String username;
+
+    @Override
+    public Long getId() {
+      return id;
+    }
+
     @Override
     public String getUsername() {
       return username;

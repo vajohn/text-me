@@ -15,5 +15,6 @@ public class ChatRoomDto {
   private Long id;
   private String name;
   private String description;
-  private UserDto createdBy;
+  private Long createdByUserId;
+  private Long modifiedByUserId;
 }

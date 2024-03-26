@@ -8,6 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import lajabu.john.textme.data.dao.MessageDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,5 +40,31 @@ public class Message extends AuditExtender implements Serializable {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "room_id")
   private ChatRoom chatRoom;
+
+  public MessageDto mapToDto() {
+    MessageDto messageDto = MessageDto.builder()
+        .content(this.content)
+        .visible(this.visible)
+        .sender(this.sender)
+        .senderId(this.senderUser != null ? this.senderUser.getId() : null)
+        .chatRoomId(this.chatRoom != null ? this.chatRoom.getId() : null)
+        .build();
+
+    if (this.modifiedByUser != null) {
+      messageDto.setModifiedById(this.modifiedByUser.getId());
+    }
+
+    if (this.senderUser != null) {
+      messageDto.setSenderDto(this.senderUser.toDto());
+    }
+    if (this.modifiedByUser != null) {
+      messageDto.setModifiedBy(this.modifiedByUser.toDto());
+    }
+    if (this.chatRoom != null) {
+      messageDto.setChatRoom(this.chatRoom.toDTO());
+    }
+
+    return messageDto;
+  }
 }
 

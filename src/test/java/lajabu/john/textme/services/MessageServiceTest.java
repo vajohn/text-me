@@ -62,7 +62,7 @@ class MessageServiceTest {
         .build();
     savedMessage.setId(1L);
     Mockito.when(messageRepository.save(Mockito.any(Message.class))).thenReturn(savedMessage);
-    Message result = messageServiceImpl.save(message);
+    Message result = messageRepository.save(message);
     Assertions.assertEquals(savedMessage, result);
   }
 

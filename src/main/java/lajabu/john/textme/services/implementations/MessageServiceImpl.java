@@ -28,8 +28,16 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   @Transactional
-  public Message save(Message message) {
-    return messageRepository.save(message);
+  public Message save(MessageDto message) {
+    User user = userService.getUserById(message.getSenderId());
+    Message newMessage = Message.builder()
+        .content(message.getContent())
+        .chatRoom(chatRoomService.getChatRoomById(message.getChatRoomId()))
+        .senderUser(user)
+        .sender(user.getUsername())
+        .visible(true)
+        .build();
+    return messageRepository.save(newMessage);
   }
 
   @Override
@@ -72,7 +80,7 @@ public class MessageServiceImpl implements MessageService {
     Message old = messageRepository.findById(message.getId())
         .orElseThrow(() -> new Status404NotFoundException(MESSAGE_NOT_FOUND));
     old.setContent(message.getContent());
-    return messageRepository.save(message);
+    return messageRepository.save(old);
   }
 
   @Override

@@ -34,25 +34,27 @@ public class ChatRoomServiceImpl implements ChatRoomService {
   }
 
   @Transactional(readOnly = true)
-  public List<ChatRoom> getAllChatRooms() {
-    return chatRoomRepository.findAll();
+  public List<ChatRoom> getAllVisibleChatRooms() {
+    return chatRoomRepository.findAllByVisibleTrue();
   }
 
   @Transactional
   public ChatRoom updateChatRoom(ChatRoom chatRoom) {
     ChatRoom old = chatRoomRepository.findById(chatRoom.getId())
         .orElseThrow(() -> new Status404NotFoundException(CHAT_ROOM_NOT_FOUND));
+    old.setModifiedBy(userService.getUserById(chatRoom.getModifiedBy().getId()));
     old.setName(chatRoom.getName());
     old.setDescription(chatRoom.getDescription());
-    old.setModifiedBy(chatRoom.getModifiedBy());
-    return chatRoomRepository.save(chatRoom);
+    return chatRoomRepository.save(old);
   }
   @Transactional
   public void deleteChatRoom(Long id, Long userId) {
     ChatRoom chatRoom = chatRoomRepository.findById(id)
         .orElseThrow(() -> new Status404NotFoundException(CHAT_ROOM_NOT_FOUND));
     if (chatRoom.getCreatedBy().getId().equals(userId)) {
-      chatRoomRepository.deleteById(id);
+      chatRoom.setVisible(false);
+      chatRoom.setModifiedBy(userService.getUserById(userId));
+      chatRoomRepository.save(chatRoom);
     } else {
       throw new Status403NotAllowedException("You are not the owner of this chat room");
     }
@@ -68,6 +70,7 @@ public class ChatRoomServiceImpl implements ChatRoomService {
     ChatRoom chatRoom = ChatRoom.builder()
         .name("General")
         .description("General chat room")
+        .visible(true)
         .createdBy(userService.getUserById(user.getId()))
         .build();
     chatRoomRepository.save(chatRoom);

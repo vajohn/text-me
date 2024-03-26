@@ -9,7 +9,7 @@ public interface ChatRoomService {
 
   ChatRoom getChatRoomById(Long id);
 
-  List<ChatRoom> getAllChatRooms();
+  List<ChatRoom> getAllVisibleChatRooms();
 
   ChatRoom updateChatRoom(ChatRoom chatRoom);
 

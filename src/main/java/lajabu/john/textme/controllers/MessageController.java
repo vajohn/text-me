@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,18 +23,18 @@ public class MessageController {
   private final MessageService messageService;
 
   @PostMapping
-  public ResponseEntity<MessageDto> createMessage(MessageDto messageDto) {
+  public ResponseEntity<MessageDto> createMessage(@RequestBody MessageDto messageDto) {
     return ResponseEntity.ok(messageService.saveLite(messageDto));
   }
 
   @PostMapping("/save")
-  public ResponseEntity<Message> saveMessage(Message message) {
-    return ResponseEntity.ok(messageService.save(message));
+  public ResponseEntity<MessageDto> saveMessage(@RequestBody MessageDto message) {
+    return ResponseEntity.ok(messageService.save(message).mapToDto());
   }
 
   @PutMapping
-  public ResponseEntity<Message> updateMessage(Message message) {
-    return ResponseEntity.ok(messageService.updateMessage(message));
+  public ResponseEntity<MessageDto> updateMessage(@RequestBody Message message) {
+    return ResponseEntity.ok(messageService.updateMessage(message).mapToDto());
   }
 
   @DeleteMapping("/{id}/{userId}")
@@ -43,8 +44,8 @@ public class MessageController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Message> getMessage(@PathVariable Long id) {
-    return ResponseEntity.ok(messageService.getMessageById(id));
+  public ResponseEntity<MessageDto> getMessage(@PathVariable Long id) {
+    return ResponseEntity.ok(messageService.getMessageById(id).mapToDto());
   }
 
   @GetMapping("/{roomId}/{visible}")
